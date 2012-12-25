@@ -28,29 +28,13 @@ public class SquidMonster extends Entity{
     @Override
     public void update(GameContainer gc, int delta) throws SlickException{
         super.update(gc, delta);
-        /*
-        frameCount += delta;
-        if(frameCount >= nextFrame){
-            frameCount -= nextFrame;
-            frame++;
-            if(frame % 2 == 0){
-                setGraphic(ResourceManager.getImage("squidMonsterMove"));
-            } else {
-                setGraphic(ResourceManager.getImage("squidMonster"));
-            }
-        }
-        y += (0.1 * delta);
-        if (y > ME.world.getHeight()){
-            this.destroy();
-        }
-        
-        */
     }
     
     public void collisionResponse(Entity e){
         health -= 50;
         if (health <= 0){
             this.destroy();
+            GameWorld.tail_length+=20;
             Random generate = new Random();
             int r_x = generate.nextInt(world.width-32);
             int r_y = generate.nextInt(world.height-32);

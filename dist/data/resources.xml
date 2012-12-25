@@ -16,9 +16,11 @@
 	<image key="bodyDowntoUp" file="Sprites/body_down_to_up.png"/>
 
 	<image key="tailUptoDown" file="Sprites/tail_up_to_down.png" />
-	<image key="tailRightto_Left" 	file="Sprites/tail_right_to_left.png"/>
+	<image key="tailRighttoLeft" 	file="Sprites/tail_right_to_left.png"/>
 	<image key="tailLefttoRight" file="Sprites/tail_left_to_right.png"/>
 	<image key="tailDowntoUp" file="Sprites/tail_down_to_up.png"/>
+	
+	<image key="body" file="Sprites/body.png"/>
 
 	<image key="bullet" file="Sprites/bullet.png"/>
 	<image key="bullet_v" file="Sprites/bullet_v.png"/>

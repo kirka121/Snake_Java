@@ -9,9 +9,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Player extends Entity {
-    private int direction = 2; //(1 = left, 2 = right, 3 = down, 4 = up)
+    public static int direction = 2; //(1 = left, 2 = right, 3 = down, 4 = up)
     public double speed = 0.1;
     public static String SNAKE = "snake";
+    public static float player_x,player_y;
     private Image playerUp, playerRight, playerLeft, playerDown;
     private int fireRate = 50;
     private int milliCount = 0;
@@ -19,10 +20,16 @@ public class Player extends Entity {
     private int milliStep = millis / 5;
     public Player(float x, float y) {
         super(x,y);
+        /*
         playerUp = ResourceManager.getImage("playerUp");
         playerRight = ResourceManager.getImage("playerRight");
         playerLeft = ResourceManager.getImage("playerLeft");
         playerDown = ResourceManager.getImage("playerDown");
+        */
+        playerUp = ResourceManager.getImage("body");
+        playerRight = ResourceManager.getImage("body");
+        playerLeft = ResourceManager.getImage("body");
+        playerDown = ResourceManager.getImage("body");
         setGraphic(playerRight);
         setHitBox(2, 6, 31, 29);
         addType(SNAKE);
@@ -35,6 +42,10 @@ public class Player extends Entity {
     @Override
     public void update(GameContainer gc, int delta) throws SlickException{
         super.update(gc, delta);
+        player_x = x;
+        player_y = y;
+        Tail t = new Tail(x, y, direction);
+        world.add(t);
         Input input = gc.getInput();
         if(check("right") && direction != 1){
             setGraphic(playerRight);
@@ -63,30 +74,6 @@ public class Player extends Entity {
             speed = 0.0;
             //lost game condition here
         }
-        
-        /*
-        if(direction == 2){
-            Tail t = new Tail(x - 30, y, direction);
-            t.setCentered(false);
-            ME.world.add(t);
-        }
-        if(direction == 1){
-           Tail t = new Tail(x + 30, y, direction);
-           t.setCentered(false);
-           ME.world.add(t); 
-        }
-        if(direction == 4){
-            Tail t = new Tail(x, y + 30, direction);
-            t.setCentered(false);
-            ME.world.add(t);
-        }
-        if(direction == 3){
-           Tail t = new Tail(x, y - 30, direction);
-           t.setCentered(false);
-           ME.world.add(t); 
-        }
-        */
-        
         
         if(check("shoot")){
             milliCount += delta;

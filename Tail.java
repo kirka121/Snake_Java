@@ -9,44 +9,44 @@ import org.newdawn.slick.SlickException;
 
 public class Tail extends Entity{
     public static String TAIL = "tail";
-    private int length;
-    private int[][] tail_position; //([length index][type of piece])
-    private int direction;
-    
+    private int counter = 0;
     public Tail (float x, float y, int dir){
         super(x ,y);
-        direction = dir;
-        if (dir == 2){
-            Image tail = ResourceManager.getImage("bodyRighttoLeft");
+        /*
+        if (Player.direction == 2){
+            Image tail = ResourceManager.getImage("tailRighttoLeft");
             setHitBox(2, 1, 22, 30);
             setGraphic(tail);
         }
-        if (dir == 1){
-            Image tail = ResourceManager.getImage("bodyLefttoRight");
+        if (Player.direction == 1){
+            Image tail = ResourceManager.getImage("tailLefttoRight");
             setHitBox(2, 1, 22, 30);
             setGraphic(tail);
         }
-        if (dir == 4){
-            Image tail = ResourceManager.getImage("bodyUptoDown");
+        if (Player.direction == 4){
+            Image tail = ResourceManager.getImage("tailUptoDown");
             setHitBox(2, 1, 22, 30);
             setGraphic(tail);
         }
-        if (dir == 3){
-            Image tail = ResourceManager.getImage("bodyDowntoUp");
+        if (Player.direction == 3){
+            Image tail = ResourceManager.getImage("tailDowntoUp");
             setHitBox(2, 1, 22, 30);
             setGraphic(tail);
         }
+        */
+        Image tail = ResourceManager.getImage("body");
+        setHitBox(2, 1, 22, 30);
+        setGraphic(tail);
         addType(TAIL);
-        length = 1;
-        tail_position = new int[100][10];
     }
     
     @Override
     public void update (GameContainer gc, int delta) throws SlickException {
         super.update(gc, delta);
-        
-        
-        
-        
+        counter++;
+        if(counter > GameWorld.tail_length){
+            ME.world.remove(this);
+            counter = GameWorld.tail_length;
+        }
     }
 }
